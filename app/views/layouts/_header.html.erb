@@ -3,18 +3,16 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">XYZ</a>
     </div>
-    <% if admin_signed_in? %>
       <ul class="nav navbar-nav">
-        <li class="<%= yield(:employees) %>"><%= link_to 'Employees', employees_path %></li>
         <li class="<%= yield(:home) %>"><%= link_to 'Home', root_path %></li>
-        <li class="<%= yield(:home) %>"><%= link_to 'Dashboard', home_dashboard_path %></li>
+        <% if admin_signed_in? %>
+          <li class="<%= yield(:employees) %>"><%= link_to 'Employees', employees_path %></li>
+          <li class="<%= yield(:home) %>"><%= link_to 'Dashboard', home_dashboard_path %></li>
+        <% end %>
       </ul>
-    <% end %>
     <ul class="nav navbar-nav navbar-right">
       <% if admin_signed_in? %>
-        <li>
-          <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-log-out"></span><%= link_to('Logout', destroy_admin_session_path, method: :delete) %></button>
-        </li>
+        <li><%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %></li>
       <% else %>
         <li><%= link_to 'Sign Up', new_admin_registration_path, class: "glyphicon glyphicon-admin" %></li>
         <li><%= link_to 'Login', new_admin_session_path, class: "glyphicon glyphicon-log-in" %></li>

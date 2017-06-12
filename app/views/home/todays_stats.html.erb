@@ -1,0 +1,24 @@
+<h1>Todays logged in <%= 'Late ' if params[:stat_type].eql?('late')%>Employees</h1>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%if @todays_attendance.empty?%>
+      <tr><td colspan="2">No records found</td></tr>
+    <%else%>
+      <% @todays_attendance.each do |attendance| %>
+        <tr>
+          <td><%= attendance.employee.username %></td>
+          <td><%= attendance.check_in_hour %> : <%= attendance.check_in_minute %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Back', home_dashboard_path, class: 'btn btn-info' %>

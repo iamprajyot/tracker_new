@@ -1,3 +1,35 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.first-thumbnail{
+	background-color: #2ecc71 !important;
+}
+
+.second-thumbnail{
+	background-color: #7b4f9d !important;
+}
+
+.third-thumbnail{
+	background-color: #e51400 !important;
+}
+
+.fourth-thumbnail{
+	background-color: #00aba9 !important;
+}
+
+.fifth-thumbnail{
+	background-color: #f39c12 !important;
+}
+
+.thumbnail{
+	height: 125px;
+	text-align: center;
+	color: #fff !important;
+	a{
+		color: #fff !important;
+	}
+}
+
+.no-margin{
+	margin: 0 !important;
+}
