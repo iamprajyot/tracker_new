@@ -1,0 +1,28 @@
+<h1>Listing Employees</h1>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Is deleted</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.username %></td>
+        <td><%= employee.is_deleted %></td>
+        <td>
+          <%= link_to '<i title="Show Employee" class="glyphicon glyphicon-eye-open"></i>'.html_safe, employee %> |
+          <%= link_to '<i title="Edit Employee" class=" glyphicon glyphicon-pencil"></i>'.html_safe, edit_employee_path(employee) %> |
+          <%= archive_unarchive_user(employee) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Employee', new_employee_path, class: 'btn btn-primary' %>

@@ -1,0 +1,12 @@
+<p>
+  <strong>Username:</strong>
+  <%= @employee.username %>
+</p>
+
+<p>
+  <strong>Is deleted:</strong>
+  <%= @employee.is_deleted %>
+</p>
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %>
