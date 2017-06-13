@@ -11,7 +11,7 @@
   <tbody>
     <% @employees.each do |employee| %>
       <tr>
-        <td><%= employee.username %></td>
+        <td><%= emp_name_link(employee) %></td>
         <td><%= employee.is_deleted %></td>
         <td>
           <%= link_to '<i title="Show Employee" class="glyphicon glyphicon-eye-open"></i>'.html_safe, employee %> |

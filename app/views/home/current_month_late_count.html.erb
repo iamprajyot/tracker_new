@@ -1,0 +1,26 @@
+<h2>Late count by Employee : Current Month</h2><h5>(<%= current_month_date_range%>)</h5>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Count</th>
+      <th>Avg. Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%if @current_month_late.empty?%>
+      <tr><td colspan="2">No records found</td></tr>
+    <%else%>
+      <% @current_month_late.each do |record| %>
+        <tr>
+          <td><%= emp_name_link(record.employee) %></td>
+          <td><%= record.late_count %></td>
+          <td><%= @each_emp_avg_time_for_month[record.employee.id].hour.floor %>:<%= @each_emp_avg_time_for_month[record.employee.id].minute.floor %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Back', home_dashboard_path, class: 'btn btn-info' %>

@@ -13,7 +13,7 @@
     <%else%>
       <% @todays_attendance.each do |attendance| %>
         <tr>
-          <td><%= attendance.employee.username %></td>
+          <td><%= emp_name_link(attendance.employee) %></td>
           <td><%= attendance.check_in_hour %> : <%= attendance.check_in_minute %></td>
         </tr>
       <% end %>

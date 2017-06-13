@@ -43,8 +43,21 @@ class HomeController < ApplicationController
     end
   end
 
+  def current_month_late_count
+    @current_month_late = EmployeeAttaindance.where(check_in_date: [Time.now.beginning_of_month..Time.now.end_of_month], is_late: true)
+    .group(:employee_id)
+    .select("count(employee_attaindances.is_late) as late_count, employee_attaindances.employee_id")
+    @each_emp_avg_time_for_month = EmployeeAttaindance.group(:employee_id)
+    .select("AVG(employee_attaindances.check_in_hour) as hour, AVG(employee_attaindances.check_in_minute) as minute, employee_attaindances.employee_id as employee_id")
+    .map { |u| [u.employee_id, u] }.to_h
+  end
+
+  def employee_current_month_attendance
+    @attendance = EmployeeAttaindance.includes(:employee).current_month_attendance_by_employee(params[:emp_id])
+  end
+
   private
   def isEmployeeLate?(tracked_time)
-    ((tracked_time.hour * 60) + tracked_time.min) > 50
+    ((tracked_time.hour * 60) + tracked_time.min) > 600
   end
 end

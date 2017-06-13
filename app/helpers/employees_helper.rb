@@ -10,4 +10,8 @@ module EmployeesHelper
     end
     return html.html_safe
   end
+
+  def emp_name_link(emp)
+  	link_to(emp.username, home_employee_current_month_attendance_path(emp_id: emp.id))
+  end
 end

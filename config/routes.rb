@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   get 'home/mark_attendance'
 
+  get 'home/current_month_late_count'
+  
+  get 'home/employee_current_month_attendance'
+
   resources :employees
 
   devise_for :admins
