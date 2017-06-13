@@ -13,41 +13,44 @@
 
 ActiveRecord::Schema.define(version: 20170612105427) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "employee_attaindances", force: :cascade do |t|
-    t.integer  "employee_id",     limit: 4
+    t.integer  "employee_id"
     t.date     "check_in_date"
-    t.integer  "check_in_hour",   limit: 4
-    t.integer  "check_in_minute", limit: 4
+    t.integer  "check_in_hour"
+    t.integer  "check_in_minute"
     t.boolean  "is_late"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "employee_attaindances", ["employee_id"], name: "index_employee_attaindances_on_employee_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.string   "username",   limit: 255
-    t.boolean  "is_deleted",             default: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "username"
+    t.boolean  "is_deleted", default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_foreign_key "employee_attaindances", "employees"

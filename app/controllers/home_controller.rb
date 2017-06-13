@@ -31,8 +31,8 @@ class HomeController < ApplicationController
     @todays_logged_in_count = todays_attendance.count
     @todays_late_arrivals = todays_attendance.late_employees.count
     total_min = (todays_attendance.sum(:check_in_hour) * 60) + todays_attendance.sum(:check_in_minute)
-    total_min = total_min / @todays_logged_in_count
-    @todays_avg_in_time = (total_min / 60).to_i.to_s + ':' + (total_min % 60).to_i.to_s
+    total_min = total_min / @todays_logged_in_count rescue 0
+    @todays_avg_in_time = (total_min / 60).to_i.to_s + ':' + (total_min % 60).to_i.to_s rescue '0'
   end
 
   def todays_stats
