@@ -1,4 +1,4 @@
-<h2>Curent Month Attendance of <b><%= @attendance.first.employee.username if !@attendance.empty?%></b></h2>
+<h2>Curent Month Attendance of <b><%= Employee.find(params[:emp_id]).username %></b></h2>
 <h5>(<%= current_month_date_range%>)</h5>
 <table class="table table-bordered table-striped">
   <thead>
@@ -11,7 +11,7 @@
 
   <tbody>
     <%if @attendance.empty?%>
-      <tr><td colspan="2">No records found</td></tr>
+      <tr><td colspan="3">No records found</td></tr>
     <%else%>
       <% @attendance.each do |record| %>
         <tr>
